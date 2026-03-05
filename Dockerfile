@@ -10,6 +10,7 @@ FROM node:22-alpine
 RUN apk add --no-cache vips-dev
 WORKDIR /app
 COPY --from=build /app .
+RUN mkdir -p /app/public/uploads
 ENV NODE_ENV=production
 EXPOSE 1337
 CMD ["npm", "start"]
