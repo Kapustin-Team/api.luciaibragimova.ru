@@ -4,17 +4,17 @@ module.exports = {
   routes: [
     {
       method: 'GET',
-      path: '/api/homepage',
+      path: '/homepage',
       handler: 'homepage.find',
     },
     {
       method: 'PUT',
-      path: '/api/homepage',
+      path: '/homepage',
       handler: 'homepage.update',
     },
     {
       method: 'DELETE',
-      path: '/api/homepage',
+      path: '/homepage',
       handler: 'homepage.delete',
     },
   ],
