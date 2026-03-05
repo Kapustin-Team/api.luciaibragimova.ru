@@ -5,13 +5,26 @@
   "options": { "draftAndPublish": true },
   "attributes": {
     "title": { "type": "string", "required": true },
+    "slug": { "type": "uid", "targetField": "title", "required": true },
+    "shortDescription": { "type": "text" },
     "description": { "type": "richtext" },
     "format": { "type": "enumeration", "enum": ["online", "offline", "hybrid"] },
     "duration": { "type": "string" },
-    "audience": { "type": "string" },
-    "price": { "type": "integer" },
+    "audience": { "type": "enumeration", "enum": ["adults", "children", "both"] },
+    "participantsCount": { "type": "string" },
     "featured": { "type": "boolean", "default": false },
-    "slug": { "type": "uid", "targetField": "title" },
-    "direction": { "type": "relation", "relation": "manyToOne", "target": "api::direction.direction" }
+    "order": { "type": "integer", "default": 0 },
+    "image": { "type": "media", "multiple": false, "allowedTypes": ["images"] },
+    "direction": { "type": "relation", "relation": "manyToOne", "target": "api::direction.direction", "inversedBy": "courses" },
+    "targetAudience": { "type": "component", "repeatable": true, "component": "course.target-audience" },
+    "results": { "type": "component", "repeatable": true, "component": "course.result" },
+    "modules": { "type": "component", "repeatable": true, "component": "course.module" },
+    "tariffs": { "type": "component", "repeatable": true, "component": "course.tariff" },
+    "faqs": { "type": "relation", "relation": "oneToMany", "target": "api::faq.faq" },
+    "reviews": { "type": "relation", "relation": "oneToMany", "target": "api::review.review", "mappedBy": "course" },
+    "relatedCourses": { "type": "relation", "relation": "oneToMany", "target": "api::course.course" },
+    "pains": { "type": "json" },
+    "methods": { "type": "json" },
+    "limitations": { "type": "json" }
   }
 }

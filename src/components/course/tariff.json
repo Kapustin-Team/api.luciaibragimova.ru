@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_course_tariffs",
+  "info": { "displayName": "Tariff", "icon": "shoppingCart", "description": "Тариф курса" },
+  "options": {},
+  "attributes": {
+    "name": { "type": "string", "required": true },
+    "price": { "type": "integer" },
+    "features": { "type": "json" },
+    "popular": { "type": "boolean", "default": false },
+    "order": { "type": "integer", "default": 0 }
+  }
+}

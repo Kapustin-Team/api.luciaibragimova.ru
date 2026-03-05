@@ -1,0 +1,9 @@
+{
+  "collectionName": "components_course_target_audiences",
+  "info": { "displayName": "TargetAudience", "icon": "user", "description": "Целевая аудитория" },
+  "options": {},
+  "attributes": {
+    "text": { "type": "string", "required": true },
+    "icon": { "type": "string" }
+  }
+}
