@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_blocks_cta_sections",
+  "info": { "displayName": "CTASection", "icon": "zap", "description": "Призыв к действию" },
+  "options": {},
+  "attributes": {
+    "title": { "type": "string", "required": true },
+    "ctaPrimary": { "type": "string" },
+    "ctaPrimaryLink": { "type": "string" },
+    "ctaSecondary": { "type": "string" },
+    "ctaSecondaryLink": { "type": "string" }
+  }
+}

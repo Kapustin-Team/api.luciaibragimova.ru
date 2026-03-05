@@ -1,0 +1,10 @@
+{
+  "collectionName": "components_blocks_courses_catalogs",
+  "info": { "displayName": "CoursesCatalog", "icon": "layout", "description": "Каталог курсов с фильтрами" },
+  "options": {},
+  "attributes": {
+    "title": { "type": "string" },
+    "subtitle": { "type": "string" },
+    "showFilters": { "type": "boolean", "default": true }
+  }
+}

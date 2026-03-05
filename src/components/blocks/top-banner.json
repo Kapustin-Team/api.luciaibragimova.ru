@@ -1,0 +1,10 @@
+{
+  "collectionName": "components_blocks_top_banners",
+  "info": { "displayName": "TopBanner", "icon": "bell", "description": "Промо-баннер сверху страницы" },
+  "options": {},
+  "attributes": {
+    "text": { "type": "string", "required": true },
+    "link": { "type": "string" },
+    "visible": { "type": "boolean", "default": true }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_blocks_abouts",
+  "info": { "displayName": "About", "icon": "user", "description": "Блок «О Люции» с фото и описанием" },
+  "options": {},
+  "attributes": {
+    "label": { "type": "string" },
+    "title": { "type": "string", "required": true },
+    "description": { "type": "richtext" },
+    "image": { "type": "media", "multiple": false, "allowedTypes": ["images"] },
+    "highlights": { "type": "json" }
+  }
+}

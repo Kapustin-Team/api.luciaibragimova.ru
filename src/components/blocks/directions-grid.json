@@ -1,0 +1,10 @@
+{
+  "collectionName": "components_blocks_directions_grids",
+  "info": { "displayName": "DirectionsGrid", "icon": "grid", "description": "Сетка направлений обучения" },
+  "options": {},
+  "attributes": {
+    "title": { "type": "string" },
+    "subtitle": { "type": "string" },
+    "showAll": { "type": "boolean", "default": true }
+  }
+}

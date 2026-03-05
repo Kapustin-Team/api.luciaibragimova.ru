@@ -1,0 +1,9 @@
+{
+  "collectionName": "components_blocks_reviews_sections",
+  "info": { "displayName": "ReviewsSection", "icon": "message-square", "description": "Секция отзывов" },
+  "options": {},
+  "attributes": {
+    "title": { "type": "string" },
+    "subtitle": { "type": "string" }
+  }
+}

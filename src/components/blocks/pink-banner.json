@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_blocks_pink_banners",
+  "info": { "displayName": "PinkBanner", "icon": "quote", "description": "Цветной баннер с цитатой или промо-текстом" },
+  "options": {},
+  "attributes": {
+    "title": { "type": "string", "required": true },
+    "description": { "type": "text" },
+    "ctaText": { "type": "string" },
+    "ctaLink": { "type": "string" },
+    "backgroundColor": { "type": "string", "default": "#8B5CF6" }
+  }
+}

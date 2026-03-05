@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_blocks_heroes",
+  "info": { "displayName": "Hero", "icon": "star", "description": "Главный баннер с заголовком, описанием и CTA" },
+  "options": {},
+  "attributes": {
+    "title": { "type": "string", "required": true },
+    "subtitle": { "type": "string" },
+    "description": { "type": "text" },
+    "image": { "type": "media", "multiple": false, "allowedTypes": ["images"] },
+    "ctaPrimary": { "type": "string" },
+    "ctaPrimaryLink": { "type": "string" },
+    "ctaSecondary": { "type": "string" },
+    "ctaSecondaryLink": { "type": "string" },
+    "stats": { "type": "json" }
+  }
+}

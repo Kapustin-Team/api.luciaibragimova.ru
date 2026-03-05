@@ -1,0 +1,9 @@
+{
+  "collectionName": "components_blocks_team_sections",
+  "info": { "displayName": "TeamSection", "icon": "users", "description": "Секция команды" },
+  "options": {},
+  "attributes": {
+    "title": { "type": "string" },
+    "subtitle": { "type": "string" }
+  }
+}

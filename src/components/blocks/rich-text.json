@@ -1,0 +1,8 @@
+{
+  "collectionName": "components_blocks_rich_texts",
+  "info": { "displayName": "RichText", "icon": "file-text", "description": "Произвольный текстовый блок" },
+  "options": {},
+  "attributes": {
+    "content": { "type": "richtext", "required": true }
+  }
+}

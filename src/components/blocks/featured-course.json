@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_blocks_featured_courses",
+  "info": { "displayName": "FeaturedCourse", "icon": "bookmark", "description": "Выделенный курс с подробностями" },
+  "options": {},
+  "attributes": {
+    "label": { "type": "string" },
+    "title": { "type": "string", "required": true },
+    "description": { "type": "text" },
+    "ctaText": { "type": "string" },
+    "ctaLink": { "type": "string" },
+    "stats": { "type": "json" },
+    "course": { "type": "relation", "relation": "oneToOne", "target": "api::course.course" }
+  }
+}
