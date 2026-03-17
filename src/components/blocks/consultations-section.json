@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_blocks_consultations_sections",
+  "info": {
+    "displayName": "ConsultationsSection",
+    "icon": "phone",
+    "description": "Секция консультаций"
+  },
+  "options": {},
+  "attributes": {
+    "title": { "type": "string" },
+    "subtitle": { "type": "string" }
+  }
+}

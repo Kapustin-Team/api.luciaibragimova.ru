@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "consultation_types",
+  "info": {
+    "singularName": "consultation-type",
+    "pluralName": "consultation-types",
+    "displayName": "ConsultationType"
+  },
+  "options": { "draftAndPublish": true },
+  "attributes": {
+    "title": { "type": "string", "required": true },
+    "description": { "type": "text" },
+    "duration": { "type": "string" },
+    "format": { "type": "string" },
+    "icon": { "type": "string" },
+    "order": { "type": "integer", "default": 0 }
+  }
+}

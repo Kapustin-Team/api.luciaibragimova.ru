@@ -19,7 +19,9 @@
         "blocks.cta-section",
         "blocks.faq-section",
         "blocks.rich-text",
-        "blocks.team-section"
+        "blocks.team-section",
+        "blocks.consultations-section",
+        "blocks.contact-section"
       ]
     }
   }

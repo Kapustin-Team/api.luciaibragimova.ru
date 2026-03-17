@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_blocks_contact_sections",
+  "info": {
+    "displayName": "ContactSection",
+    "icon": "mail",
+    "description": "Секция контактов"
+  },
+  "options": {},
+  "attributes": {
+    "title": { "type": "string" },
+    "subtitle": { "type": "string" },
+    "phone": { "type": "string" },
+    "email": { "type": "string" },
+    "address": { "type": "string" }
+  }
+}
