@@ -1,0 +1,8 @@
+{
+  "collectionName": "components_hero_subtitles",
+  "info": { "displayName": "Subtitle", "icon": "quote", "description": "Сменяющийся подзаголовок" },
+  "options": {},
+  "attributes": {
+    "text": { "type": "string", "required": true }
+  }
+}
