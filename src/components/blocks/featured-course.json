@@ -5,10 +5,16 @@
   "attributes": {
     "label": { "type": "string" },
     "title": { "type": "string", "required": true },
+    "subtitle": { "type": "string" },
     "description": { "type": "text" },
     "ctaText": { "type": "string" },
     "ctaLink": { "type": "string" },
+    "ctaSecondaryText": { "type": "string" },
+    "ctaSecondaryLink": { "type": "string" },
+    "quote": { "type": "text" },
+    "quoteAuthor": { "type": "string" },
     "stats": { "type": "json" },
+    "image": { "type": "media", "multiple": false, "allowedTypes": ["images"] },
     "course": { "type": "relation", "relation": "oneToOne", "target": "api::course.course" }
   }
 }
