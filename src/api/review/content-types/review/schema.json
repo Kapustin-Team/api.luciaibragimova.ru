@@ -9,6 +9,7 @@
     "text": { "type": "text" },
     "rating": { "type": "integer", "min": 1, "max": 5 },
     "screenshot": { "type": "media", "multiple": false, "allowedTypes": ["images"] },
+    "video": { "type": "media", "multiple": false, "allowedTypes": ["videos"] },
     "course": { "type": "relation", "relation": "manyToOne", "target": "api::course.course", "inversedBy": "reviews" }
   }
 }
