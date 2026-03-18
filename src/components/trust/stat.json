@@ -1,0 +1,10 @@
+{
+  "collectionName": "components_trust_stats",
+  "info": { "displayName": "Stat", "icon": "chartCircle", "description": "Карточка статистики (число + подпись)" },
+  "options": {},
+  "attributes": {
+    "icon": { "type": "enumeration", "enum": ["heart", "users", "book", "shield"], "default": "heart" },
+    "number": { "type": "string", "required": true },
+    "label": { "type": "string", "required": true }
+  }
+}

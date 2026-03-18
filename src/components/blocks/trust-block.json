@@ -1,0 +1,8 @@
+{
+  "collectionName": "components_blocks_trust_blocks",
+  "info": { "displayName": "TrustBlock", "icon": "shield", "description": "Блок доверия с цифрами и иконками" },
+  "options": {},
+  "attributes": {
+    "stats": { "type": "component", "repeatable": true, "component": "trust.stat" }
+  }
+}

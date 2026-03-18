@@ -21,7 +21,8 @@
         "blocks.rich-text",
         "blocks.team-section",
         "blocks.consultations-section",
-        "blocks.contact-section"
+        "blocks.contact-section",
+        "blocks.trust-block"
       ]
     }
   }
