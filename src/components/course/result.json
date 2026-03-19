@@ -1,8 +1,9 @@
 {
   "collectionName": "components_course_results",
-  "info": { "displayName": "Result", "icon": "check", "description": "Результат курса" },
+  "info": { "displayName": "Result", "icon": "check", "description": "Результат курса с иллюстрацией" },
   "options": {},
   "attributes": {
-    "text": { "type": "string", "required": true }
+    "text": { "type": "string", "required": true },
+    "image": { "type": "media", "multiple": false, "allowedTypes": ["images"] }
   }
 }

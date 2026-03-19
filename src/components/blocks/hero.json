@@ -1,11 +1,15 @@
 {
   "collectionName": "components_blocks_heroes",
-  "info": { "displayName": "Hero", "icon": "star", "description": "Главный баннер с заголовком, описанием и CTA" },
+  "info": { "displayName": "Hero", "icon": "star", "description": "Главный баннер — full-screen видео с оверлеем, теги, кнопки" },
   "options": {},
   "attributes": {
     "title": { "type": "string", "required": true },
-    "subtitles": { "type": "component", "repeatable": true, "component": "hero.subtitle" },
     "description": { "type": "text" },
+    "subtitles": { "type": "component", "repeatable": true, "component": "hero.subtitle" },
+    "list": { "type": "component", "repeatable": true, "component": "hero.tag" },
+    "buttons": { "type": "component", "repeatable": true, "component": "hero.button" },
+    "video": { "type": "media", "multiple": false, "allowedTypes": ["videos"] },
+    "poster": { "type": "media", "multiple": false, "allowedTypes": ["images"] },
     "image": { "type": "media", "multiple": false, "allowedTypes": ["images"] },
     "ctaPrimary": { "type": "string" },
     "ctaPrimaryLink": { "type": "string" },

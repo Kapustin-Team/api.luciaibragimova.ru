@@ -1,0 +1,8 @@
+{
+  "collectionName": "components_hero_tags",
+  "info": { "displayName": "Tag", "icon": "hashtag", "description": "Плашка-тег на hero" },
+  "options": {},
+  "attributes": {
+    "text": { "type": "string", "required": true }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_hero_buttons",
+  "info": { "displayName": "Button", "icon": "cursor", "description": "Кнопка CTA на hero" },
+  "options": {},
+  "attributes": {
+    "label": { "type": "string", "required": true },
+    "href": { "type": "string", "required": true },
+    "variant": {
+      "type": "enumeration",
+      "enum": ["primary", "filled", "outline"],
+      "default": "primary"
+    }
+  }
+}
