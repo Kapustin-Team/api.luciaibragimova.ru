@@ -7,7 +7,6 @@
     "description": { "type": "text" },
     "subtitles": { "type": "component", "repeatable": true, "component": "hero.subtitle" },
     "list": { "type": "component", "repeatable": true, "component": "hero.tag" },
-    "buttons": { "type": "component", "repeatable": true, "component": "hero.button" },
     "video": { "type": "media", "multiple": false, "allowedTypes": ["videos"] },
     "poster": { "type": "media", "multiple": false, "allowedTypes": ["images"] },
     "image": { "type": "media", "multiple": false, "allowedTypes": ["images"] },

@@ -29,6 +29,7 @@
     "faqs": { "type": "relation", "relation": "oneToMany", "target": "api::faq.faq" },
     "reviews": { "type": "relation", "relation": "oneToMany", "target": "api::review.review", "mappedBy": "course" },
     "relatedCourses": { "type": "relation", "relation": "oneToMany", "target": "api::course.course" },
+    "teachers": { "type": "component", "repeatable": true, "component": "course.teacher" },
     "pains": { "type": "json" },
     "methods": { "type": "json" },
     "limitations": { "type": "json" }

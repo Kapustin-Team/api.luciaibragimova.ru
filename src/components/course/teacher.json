@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_course_teachers",
+  "info": {
+    "displayName": "Teacher",
+    "icon": "user"
+  },
+  "attributes": {
+    "name": { "type": "string", "required": true },
+    "role": { "type": "string" },
+    "description": { "type": "text" },
+    "photo": { "type": "media", "multiple": false, "allowedTypes": ["images"] }
+  }
+}
