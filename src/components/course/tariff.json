@@ -7,6 +7,7 @@
     "price": { "type": "integer" },
     "features": { "type": "json" },
     "popular": { "type": "boolean", "default": false },
+    "badgeText": { "type": "string" },
     "order": { "type": "integer", "default": 0 }
   }
 }

@@ -1,0 +1,9 @@
+{
+  "collectionName": "components_course_limitations",
+  "info": { "displayName": "Limitation", "icon": "information", "description": "Важная информация перед записью" },
+  "options": {},
+  "attributes": {
+    "text": { "type": "string", "required": true },
+    "icon": { "type": "enumeration", "enum": ["alert", "info", "clock", "ban", "heart", "shield", "users", "star", "check", "eye"], "default": "alert" }
+  }
+}

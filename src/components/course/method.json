@@ -1,0 +1,9 @@
+{
+  "collectionName": "components_course_methods",
+  "info": { "displayName": "Method", "icon": "lightBulb", "description": "Методика или подход с иконкой" },
+  "options": {},
+  "attributes": {
+    "text": { "type": "string", "required": true },
+    "icon": { "type": "enumeration", "enum": ["book", "brain", "heart", "shield", "star", "users", "lightbulb", "eye", "leaf", "sun", "sparkle", "check"], "default": "book" }
+  }
+}
