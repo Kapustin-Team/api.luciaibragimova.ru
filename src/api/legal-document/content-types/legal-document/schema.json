@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "legal_documents",
+  "info": {
+    "singularName": "legal-document",
+    "pluralName": "legal-documents",
+    "displayName": "Документы",
+    "description": "Оферта, политики, согласия: текст страницы и PDF для скачивания"
+  },
+  "options": { "draftAndPublish": true },
+  "attributes": {
+    "title": { "type": "string", "required": true },
+    "slug": { "type": "uid", "targetField": "title", "required": true },
+    "content": { "type": "richtext" },
+    "file": { "type": "media", "multiple": false, "allowedTypes": ["files"] },
+    "showInFooter": { "type": "boolean", "default": true },
+    "order": { "type": "integer", "default": 0 }
+  }
+}

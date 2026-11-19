@@ -4,3 +4,8 @@ node_modules
 build
 dist
 .env
+
+# Strapi local dev artifacts
+.strapi/
+.strapi-updater.json
+types/
