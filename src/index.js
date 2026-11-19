@@ -115,7 +115,13 @@ function readLegalSeed(file) {
   return { title: match[1].trim(), content: raw.slice(match[0].length).trim() };
 }
 
+const SEED_STORE = { type: 'core', name: 'lucia-seed' };
+
 async function seedLegalDocuments(strapi) {
+  // Seed only once: documents deleted later in the admin are not recreated.
+  const store = strapi.store(SEED_STORE);
+  if (await store.get({ key: 'legal-documents-v1' })) return;
+
   for (const doc of LEGAL_DOCS) {
     const existing = await strapi
       .documents(LEGAL_DOC_UID)
@@ -137,6 +143,8 @@ async function seedLegalDocuments(strapi) {
     });
     strapi.log.info(`[bootstrap] seeded legal document ${doc.slug}`);
   }
+
+  await store.set({ key: 'legal-documents-v1', value: true });
 }
 
 async function applyAdminLabels(strapi, uid, labels) {
