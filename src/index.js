@@ -25,6 +25,8 @@ const DEFAULT_SITE_SETTING = {
   showContactForm: false,
   showPinkBanner: false,
   showStudioGallery: true,
+  showCourseTariffs: false,
+  showCourseFinalCta: false,
   showFooterAboutLinks: false,
   showFooterSubscribe: false,
   showChatPhone: false,
@@ -61,6 +63,8 @@ const SITE_SETTING_LABELS = {
   showContactForm: 'Показывать форму заявки над подвалом',
   showPinkBanner: 'Показывать баннер «Более 500 семей…»',
   showStudioGallery: 'Показывать галерею «Внутри студии»',
+  showCourseTariffs: 'Страницы курсов: показывать тарифы (иначе «Курс в разработке» или кнопка на GetCourse)',
+  showCourseFinalCta: 'Страницы курсов: показывать блок «Готовы начать свой путь?»',
   showFooterAboutLinks: 'Подвал: показывать ссылки «О студии» вместо реквизитов',
   showFooterSubscribe: 'Подвал: показывать кнопку «Подписаться»',
   showChatPhone: 'Виджет «Свяжитесь с нами»: показывать «Позвонить»',
@@ -240,6 +244,48 @@ const STUDIO_GALLERY_LABELS = {
   items: 'Фотографии (порядок — перетаскиванием)',
 };
 
+const COURSE_UID = 'api::course.course';
+const COURSE_LABELS = {
+  getcourseLink: 'Ссылка на GetCourse (заполнена — карточка курса ведёт на GetCourse; пусто — на страницу курса на сайте)',
+};
+
+// One-time: move the GetCourse link field to its own row right under the title,
+// so it is easy to find in the long course form.
+async function promoteCourseGetcourseField(strapi) {
+  const store = strapi.store(SEED_STORE);
+  if (await store.get({ key: 'course-getcourse-field-v1' })) return;
+
+  const service = strapi.plugin('content-manager')?.service('content-types');
+  if (!service?.findConfiguration || !service?.updateConfiguration) return;
+  const contentType = strapi.contentTypes[COURSE_UID];
+  const configuration = await service.findConfiguration(contentType);
+  const edit = configuration?.layouts?.edit;
+  if (!Array.isArray(edit)) return;
+
+  let field = null;
+  const rows = edit
+    .map((row) =>
+      row.filter((f) => {
+        if (f.name === 'getcourseLink') {
+          field = f;
+          return false;
+        }
+        return true;
+      })
+    )
+    .filter((row) => row.length > 0);
+  if (!field) return;
+  rows.splice(1, 0, [{ ...field, size: 12 }]);
+
+  await service.updateConfiguration(contentType, {
+    settings: configuration.settings,
+    metadatas: configuration.metadatas,
+    layouts: { ...configuration.layouts, edit: rows },
+  });
+  await store.set({ key: 'course-getcourse-field-v1', value: true });
+  strapi.log.info('[bootstrap] course form: GetCourse link moved under the title');
+}
+
 async function applyAdminLabels(strapi, uid, labels) {
   const service = strapi.plugin('content-manager')?.service('content-types');
   if (!service?.findConfiguration || !service?.updateConfiguration) return;
@@ -281,6 +327,8 @@ module.exports = {
       ['site-setting labels', () => applyAdminLabels(strapi, SITE_SETTING_UID, SITE_SETTING_LABELS)],
       ['legal-document labels', () => applyAdminLabels(strapi, LEGAL_DOC_UID, LEGAL_DOC_LABELS)],
       ['studio-gallery labels', () => applyAdminLabels(strapi, STUDIO_GALLERY_UID, STUDIO_GALLERY_LABELS)],
+      ['course labels', () => applyAdminLabels(strapi, COURSE_UID, COURSE_LABELS)],
+      ['course form layout', () => promoteCourseGetcourseField(strapi)],
     ];
 
     for (const [name, run] of steps) {

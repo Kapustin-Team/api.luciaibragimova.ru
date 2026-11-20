@@ -43,6 +43,14 @@
       "type": "boolean",
       "default": true
     },
+    "showCourseTariffs": {
+      "type": "boolean",
+      "default": false
+    },
+    "showCourseFinalCta": {
+      "type": "boolean",
+      "default": false
+    },
     "showFooterAboutLinks": {
       "type": "boolean",
       "default": false
