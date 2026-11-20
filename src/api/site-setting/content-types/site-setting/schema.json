@@ -7,28 +7,98 @@
     "displayName": "Настройки сайта",
     "description": "Видимость элементов, соцсети, реквизиты, cookie-баннер"
   },
-  "options": { "draftAndPublish": false },
+  "options": {
+    "draftAndPublish": false
+  },
   "attributes": {
-    "showHeroSecondaryButton": { "type": "boolean", "default": false },
-    "showNavConsultations": { "type": "boolean", "default": false },
-    "showNavReviews": { "type": "boolean", "default": false },
-    "showFeaturedCourse": { "type": "boolean", "default": false },
-    "showConsultationsButton": { "type": "boolean", "default": false },
-    "showContactForm": { "type": "boolean", "default": false },
-    "showFooterAboutLinks": { "type": "boolean", "default": false },
-    "showFooterSubscribe": { "type": "boolean", "default": false },
-    "showChatPhone": { "type": "boolean", "default": false },
-    "showCookieBanner": { "type": "boolean", "default": true },
-    "telegramUrl": { "type": "string" },
-    "maxUrl": { "type": "string" },
-    "vkUrl": { "type": "string" },
-    "youtubeUrl": { "type": "string" },
-    "phone": { "type": "string" },
-    "legalName": { "type": "string" },
-    "inn": { "type": "string" },
-    "ogrn": { "type": "string" },
-    "legalAddress": { "type": "text" },
-    "legalEmail": { "type": "string" },
-    "cookieBannerText": { "type": "text" }
+    "showHeroSecondaryButton": {
+      "type": "boolean",
+      "default": false
+    },
+    "showNavConsultations": {
+      "type": "boolean",
+      "default": false
+    },
+    "showNavReviews": {
+      "type": "boolean",
+      "default": false
+    },
+    "showFeaturedCourse": {
+      "type": "boolean",
+      "default": false
+    },
+    "showConsultationsButton": {
+      "type": "boolean",
+      "default": false
+    },
+    "showContactForm": {
+      "type": "boolean",
+      "default": false
+    },
+    "showPinkBanner": {
+      "type": "boolean",
+      "default": false
+    },
+    "showStudioGallery": {
+      "type": "boolean",
+      "default": true
+    },
+    "showCourseTariffs": {
+      "type": "boolean",
+      "default": false
+    },
+    "showCourseFinalCta": {
+      "type": "boolean",
+      "default": false
+    },
+    "showFooterAboutLinks": {
+      "type": "boolean",
+      "default": false
+    },
+    "showFooterSubscribe": {
+      "type": "boolean",
+      "default": false
+    },
+    "showChatPhone": {
+      "type": "boolean",
+      "default": false
+    },
+    "showCookieBanner": {
+      "type": "boolean",
+      "default": true
+    },
+    "telegramUrl": {
+      "type": "string"
+    },
+    "maxUrl": {
+      "type": "string"
+    },
+    "vkUrl": {
+      "type": "string"
+    },
+    "youtubeUrl": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "legalName": {
+      "type": "string"
+    },
+    "inn": {
+      "type": "string"
+    },
+    "ogrn": {
+      "type": "string"
+    },
+    "legalAddress": {
+      "type": "text"
+    },
+    "legalEmail": {
+      "type": "string"
+    },
+    "cookieBannerText": {
+      "type": "text"
+    }
   }
 }

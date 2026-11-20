@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_gallery_items",
+  "info": {
+    "displayName": "Фото",
+    "icon": "picture",
+    "description": "Фото интерьера с подписью"
+  },
+  "options": {},
+  "attributes": {
+    "image": { "type": "media", "multiple": false, "required": true, "allowedTypes": ["images"] },
+    "caption": { "type": "string" }
+  }
+}
