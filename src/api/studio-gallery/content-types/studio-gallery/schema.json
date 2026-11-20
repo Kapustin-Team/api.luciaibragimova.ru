@@ -1,0 +1,17 @@
+{
+  "kind": "singleType",
+  "collectionName": "studio_galleries",
+  "info": {
+    "singularName": "studio-gallery",
+    "pluralName": "studio-galleries",
+    "displayName": "Галерея «Внутри студии»",
+    "description": "Лента фотографий интерьера на главной"
+  },
+  "options": { "draftAndPublish": false },
+  "attributes": {
+    "label": { "type": "string" },
+    "title": { "type": "string" },
+    "subtitle": { "type": "text" },
+    "items": { "type": "component", "repeatable": true, "component": "gallery.item" }
+  }
+}

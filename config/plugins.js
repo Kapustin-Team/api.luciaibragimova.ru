@@ -4,7 +4,9 @@ module.exports = ({ env }) => ({
       jwtSecret: env('JWT_SECRET'),
     },
   },
-  upload: {
+  // S3 in production; local disk when S3 credentials are absent (local dev).
+  ...(env('S3_ACCESS_KEY_ID') ? {} : { upload: { config: { provider: 'local' } } }),
+  ...(env('S3_ACCESS_KEY_ID') ? { upload: {
     config: {
       provider: '@strapi/provider-upload-aws-s3',
       providerOptions: {
@@ -29,5 +31,5 @@ module.exports = ({ env }) => ({
         delete: {},
       },
     },
-  },
+  } } : {}),
 });

@@ -1,16 +1,19 @@
 'use strict';
 
 const fs = require('fs');
+const os = require('os');
 const path = require('path');
 
 const SITE_SETTING_UID = 'api::site-setting.site-setting';
 const LEGAL_DOC_UID = 'api::legal-document.legal-document';
+const STUDIO_GALLERY_UID = 'api::studio-gallery.studio-gallery';
 
 // Public read access for the website (no auth on the frontend).
 const PUBLIC_ACTIONS = [
   `${SITE_SETTING_UID}.find`,
   `${LEGAL_DOC_UID}.find`,
   `${LEGAL_DOC_UID}.findOne`,
+  `${STUDIO_GALLERY_UID}.find`,
 ];
 
 const DEFAULT_SITE_SETTING = {
@@ -20,6 +23,8 @@ const DEFAULT_SITE_SETTING = {
   showFeaturedCourse: false,
   showConsultationsButton: false,
   showContactForm: false,
+  showPinkBanner: false,
+  showStudioGallery: true,
   showFooterAboutLinks: false,
   showFooterSubscribe: false,
   showChatPhone: false,
@@ -54,6 +59,8 @@ const SITE_SETTING_LABELS = {
   showFeaturedCourse: 'Показывать блок «Вовремя» (выделенный курс)',
   showConsultationsButton: 'Показывать кнопку «Записаться на консультацию»',
   showContactForm: 'Показывать форму заявки над подвалом',
+  showPinkBanner: 'Показывать баннер «Более 500 семей…»',
+  showStudioGallery: 'Показывать галерею «Внутри студии»',
   showFooterAboutLinks: 'Подвал: показывать ссылки «О студии» вместо реквизитов',
   showFooterSubscribe: 'Подвал: показывать кнопку «Подписаться»',
   showChatPhone: 'Виджет «Свяжитесь с нами»: показывать «Позвонить»',
@@ -101,7 +108,22 @@ async function grantPublicPermissions(strapi) {
 
 async function seedSiteSetting(strapi) {
   const existing = await strapi.documents(SITE_SETTING_UID).findFirst();
-  if (existing) return;
+  if (existing) {
+    // Fields added in later releases are null on the existing record:
+    // fill them with defaults so the admin checkboxes match the site.
+    const missing = {};
+    for (const [key, value] of Object.entries(DEFAULT_SITE_SETTING)) {
+      if (existing[key] === null || existing[key] === undefined) missing[key] = value;
+    }
+    if (Object.keys(missing).length > 0) {
+      await strapi.documents(SITE_SETTING_UID).update({
+        documentId: existing.documentId,
+        data: missing,
+      });
+      strapi.log.info(`[bootstrap] site-setting defaults filled: ${Object.keys(missing).join(', ')}`);
+    }
+    return;
+  }
   await strapi.documents(SITE_SETTING_UID).create({ data: DEFAULT_SITE_SETTING });
   strapi.log.info('[bootstrap] seeded site-setting');
 }
@@ -147,6 +169,77 @@ async function seedLegalDocuments(strapi) {
   await store.set({ key: 'legal-documents-v1', value: true });
 }
 
+const STUDIO_GALLERY_SEED = {
+  label: 'Внутри студии',
+  title: 'Пространство, где спокойно говорить о важном',
+  subtitle: 'Кабинеты для личных консультаций, комнаты для групп и учебный класс.',
+  items: [
+    { file: 'studio-reception.jpg', caption: 'Ресепшен' },
+    { file: 'studio-consultation-room.jpg', caption: 'Кабинет для индивидуальных консультаций' },
+    { file: 'studio-small-group-room.jpg', caption: 'Комната для малых групп' },
+    { file: 'studio-group-hall.jpg', caption: 'Зал на 10 человек' },
+    { file: 'studio-classroom.jpg', caption: 'Учебный класс' },
+    { file: 'studio-kitchen.jpg', caption: 'Кухня, зона отдыха' },
+  ],
+};
+
+async function uploadSeedImage(strapi, file, alternativeText) {
+  const source = path.join(__dirname, '..', 'seed', 'studio-gallery', file);
+  if (!fs.existsSync(source)) return null;
+  // Upload works on a temp copy so the seed file is never moved or removed.
+  const tmpPath = path.join(os.tmpdir(), `lucia-seed-${Date.now()}-${file}`);
+  fs.copyFileSync(source, tmpPath);
+  try {
+    const [uploaded] = await strapi
+      .plugin('upload')
+      .service('upload')
+      .upload({
+        data: { fileInfo: { name: file, alternativeText, caption: alternativeText } },
+        files: {
+          filepath: tmpPath,
+          originalFilename: file,
+          mimetype: 'image/jpeg',
+          size: fs.statSync(tmpPath).size,
+        },
+      });
+    return uploaded;
+  } finally {
+    fs.rmSync(tmpPath, { force: true });
+  }
+}
+
+async function seedStudioGallery(strapi) {
+  const store = strapi.store(SEED_STORE);
+  if (await store.get({ key: 'studio-gallery-v1' })) return;
+
+  const existing = await strapi.documents(STUDIO_GALLERY_UID).findFirst();
+  if (!existing) {
+    const items = [];
+    for (const item of STUDIO_GALLERY_SEED.items) {
+      const image = await uploadSeedImage(strapi, item.file, item.caption);
+      if (image) items.push({ image: image.id, caption: item.caption });
+    }
+    await strapi.documents(STUDIO_GALLERY_UID).create({
+      data: {
+        label: STUDIO_GALLERY_SEED.label,
+        title: STUDIO_GALLERY_SEED.title,
+        subtitle: STUDIO_GALLERY_SEED.subtitle,
+        items,
+      },
+    });
+    strapi.log.info(`[bootstrap] seeded studio gallery (${items.length} photos)`);
+  }
+
+  await store.set({ key: 'studio-gallery-v1', value: true });
+}
+
+const STUDIO_GALLERY_LABELS = {
+  label: 'Надпись над заголовком',
+  title: 'Заголовок',
+  subtitle: 'Подзаголовок',
+  items: 'Фотографии (порядок — перетаскиванием)',
+};
+
 async function applyAdminLabels(strapi, uid, labels) {
   const service = strapi.plugin('content-manager')?.service('content-types');
   if (!service?.findConfiguration || !service?.updateConfiguration) return;
@@ -184,8 +277,10 @@ module.exports = {
       ['public permissions', () => grantPublicPermissions(strapi)],
       ['site-setting seed', () => seedSiteSetting(strapi)],
       ['legal documents seed', () => seedLegalDocuments(strapi)],
+      ['studio gallery seed', () => seedStudioGallery(strapi)],
       ['site-setting labels', () => applyAdminLabels(strapi, SITE_SETTING_UID, SITE_SETTING_LABELS)],
       ['legal-document labels', () => applyAdminLabels(strapi, LEGAL_DOC_UID, LEGAL_DOC_LABELS)],
+      ['studio-gallery labels', () => applyAdminLabels(strapi, STUDIO_GALLERY_UID, STUDIO_GALLERY_LABELS)],
     ];
 
     for (const [name, run] of steps) {
