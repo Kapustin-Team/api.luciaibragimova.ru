@@ -174,9 +174,8 @@ async function seedLegalDocuments(strapi) {
 }
 
 const STUDIO_GALLERY_SEED = {
-  label: 'Внутри студии',
-  title: 'Пространство, где спокойно говорить о важном',
-  subtitle: 'Кабинеты для личных консультаций, комнаты для групп и учебный класс.',
+  title: 'Внутри студии',
+  subtitle: 'Пространство, где спокойно говорить о важном',
   items: [
     { file: 'studio-reception.jpg', caption: 'Ресепшен' },
     { file: 'studio-consultation-room.jpg', caption: 'Кабинет для индивидуальных консультаций' },
@@ -225,7 +224,6 @@ async function seedStudioGallery(strapi) {
     }
     await strapi.documents(STUDIO_GALLERY_UID).create({
       data: {
-        label: STUDIO_GALLERY_SEED.label,
         title: STUDIO_GALLERY_SEED.title,
         subtitle: STUDIO_GALLERY_SEED.subtitle,
         items,
@@ -238,7 +236,6 @@ async function seedStudioGallery(strapi) {
 }
 
 const STUDIO_GALLERY_LABELS = {
-  label: 'Надпись над заголовком',
   title: 'Заголовок',
   subtitle: 'Подзаголовок',
   items: 'Фотографии (порядок — перетаскиванием)',
